@@ -108,21 +108,31 @@ namespace _31._01.Controllers
 
 
         }
+        public IActionResult AddInformation(string id)
+        {
+            WriterProfileVm writerProfileVm = new WriterProfileVm();
+            var user = applicationUserRepository.GetById(id);
+            writerProfileVm.Id = user.Id;
+            writerProfileVm.FirstName = user.FirstName;
+            writerProfileVm.LastName=user.LastName ;
+            writerProfileVm.Email=user.Email;
+            if (user.Photo != null)
+            {
+                writerProfileVm.Photo=user.Photo  ;
+            }
+           writerProfileVm.İnformation= user.İnformation  ;
+
+            return View(writerProfileVm);
+        }
         [HttpPost]
         public IActionResult AddInformation(WriterProfileVm writerProfileVm)
         {
-            ApplicationUser applicationUser = new ApplicationUser();
-            applicationUser.Id = writerProfileVm.Id;
-            applicationUser.FirstName = writerProfileVm.FirstName;
-            applicationUser.LastName = writerProfileVm.LastName;
-            applicationUser.Email = writerProfileVm.Email;
-            if (applicationUser.Photo != null)
-            {
-                applicationUser.Photo = writerProfileVm.Photo;
-            }
-            applicationUser.İnformation = writerProfileVm.İnformation;
+            //ApplicationUser applicationUser = new ApplicationUser();
+            var user = applicationUserRepository.GetById(writerProfileVm.Id);
+            user.Id = writerProfileVm.Id;
+            user.İnformation = writerProfileVm.İnformation;
 
-            applicationUserRepository.Update(applicationUser);
+            applicationUserRepository.Update(user);
             return RedirectToAction(nameof(Index));
         }
     }

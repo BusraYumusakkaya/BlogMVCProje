@@ -24,13 +24,17 @@
                 @if (Model.Photo != null)
                 {
                     <td><img src="/image/@Model.Photo" alt="photo" class="card-img-thumbnail" /></td>
+                    <input asp-for="@Model.Photo" hidden />
                 }
                 else
                 {
                     <td><img src="/image/default2.png" alt="default" class="card-img-top" /></td>
+                    <input asp-for="@Model.Photo" hidden />
                 }
                 <div class="card-body">
                     <h5 class="card-title">@Model.FirstName @Model.LastName</h5>
+                    <input asp-for="@Model.FirstName" hidden />
+                    <input asp-for="@Model.LastName" hidden />
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">@Model.Email</li>

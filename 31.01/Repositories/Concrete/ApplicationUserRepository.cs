@@ -12,5 +12,9 @@ namespace _31._01.Repositories.Concrete
         {
             this.db = db;
         }
+        public ApplicationUser GetById(string id)
+        {
+            return db.ApplicationUsers.Find(id);
+        }
     }
 }
