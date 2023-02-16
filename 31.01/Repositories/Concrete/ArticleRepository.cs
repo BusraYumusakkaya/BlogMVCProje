@@ -26,13 +26,5 @@ namespace _31._01.Repositories.Concrete
         {
             return db.Articles.Include(s => s.Categories);
         }
-        //public IEnumerable<Article> FindTopicFromArticle(string input)
-        //{
-        //    return db.Articles.Where(a => a.Id == input);
-        //}
-        //public IEnumerable<Article> FindTopicFromArticle(string input)
-        //{
-        //    return db.Articles.Where(a => a.Id == input);
-        //}
     }
 }

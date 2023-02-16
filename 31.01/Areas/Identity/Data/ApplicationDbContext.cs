@@ -85,21 +85,25 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         builder.Entity<Category>().HasData(new Category
         {
             Id = 1,
+            About= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit.",
             CategoryType = "Science"
         });
         builder.Entity<Category>().HasData(new Category
         {
             Id = 2,
+            About = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit.",
             CategoryType = "Literature"
         });
         builder.Entity<Category>().HasData(new Category
         {
             Id = 3,
+            About = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit.",
             CategoryType = "Philosophy"
         });
         builder.Entity<Category>().HasData(new Category
         {
             Id = 4,
+            About = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit.",
             CategoryType = "History"
         });
 

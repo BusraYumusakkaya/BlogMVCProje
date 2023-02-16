@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _31._01.Data;
 
@@ -11,9 +12,10 @@ using _31._01.Data;
 namespace _31._01.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230216204806_many")]
+    partial class many
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,9 +107,9 @@ namespace _31._01.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "62e5c4fa-bb4e-49b4-ab2c-6c6bd3b0fa35",
+                            Id = "5d696afe-55ef-4607-b990-ec3e5bb6715f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fa29adf1-bad1-47be-aa54-55dda1a92af4",
+                            ConcurrencyStamp = "eba25190-3e4c-4176-944a-61cc16862e9f",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -115,17 +117,17 @@ namespace _31._01.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECJzrdViB7nh92NyRylAlSeHrjGVPdn/nOC5xvrsQgMwhgpcOekgGosLArEXrbQgqA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBN/gDhrEUW7aVK3jUXk/wKzPcYoJfnraXJIWSXPceJ7j3aILUm0QOAfL2R/kk079A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e7578003-1e46-4a26-ae06-eae8a138b4a6",
+                            SecurityStamp = "8b018c58-71b0-41aa-a340-060f19301611",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
                         new
                         {
-                            Id = "bb1f20f3-8f8e-4487-a965-1d5f575cdfd8",
+                            Id = "543ec2c1-6d89-46b8-ad02-5480ed0f8841",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d4cbdba5-ff69-44e0-86bc-01815ec621c2",
+                            ConcurrencyStamp = "51800af3-3240-4b59-87b0-c0df5d430c4d",
                             Email = "standart@standart.com",
                             EmailConfirmed = true,
                             FirstName = "Standart",
@@ -133,9 +135,9 @@ namespace _31._01.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "STANDART@STANDART.COM",
                             NormalizedUserName = "STANDART@STANDART.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE6W0MqDaCzh9fIZgGkMPTv3QcgucTYFqr1D9nWSQtR6pPrTk7AbCns8TkY4mQc99Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI8OH6pVIKwZIeDM/OGkBqkdB8PKAfINkgBM5KNcRMgti1hK1hOG0WozWQahRhQ+Ew==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a798cc58-a422-4a29-97cf-c592d20c96c3",
+                            SecurityStamp = "857d39a0-3ecf-460d-9149-6b2c4b52ffee",
                             TwoFactorEnabled = false,
                             UserName = "standart@standart.com"
                         });
@@ -181,10 +183,6 @@ namespace _31._01.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("About")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CategoryType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -197,25 +195,21 @@ namespace _31._01.Migrations
                         new
                         {
                             Id = 1,
-                            About = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit.",
                             CategoryType = "Science"
                         },
                         new
                         {
                             Id = 2,
-                            About = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit.",
                             CategoryType = "Literature"
                         },
                         new
                         {
                             Id = 3,
-                            About = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit.",
                             CategoryType = "Philosophy"
                         },
                         new
                         {
                             Id = 4,
-                            About = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit.",
                             CategoryType = "History"
                         });
                 });
@@ -279,15 +273,15 @@ namespace _31._01.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6c14c20f-af7d-4364-8638-583e16b5c2ed",
-                            ConcurrencyStamp = "b6445774-156c-44e4-941f-cc40e87aa902",
+                            Id = "e1324a08-af1c-4928-b7ca-c6ff6e30d5ec",
+                            ConcurrencyStamp = "92b676c4-f064-484c-8811-c83bb2e2ba57",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "5daeb6a2-fdf3-492a-8b54-7a3ea765e753",
-                            ConcurrencyStamp = "c711ce7b-cd5e-49f3-9442-4943b5d95c60",
+                            Id = "c767cb64-23fa-40db-860e-2ff1ef15cb44",
+                            ConcurrencyStamp = "11cede8e-96a7-4d11-b4a0-4c14bb991d75",
                             Name = "standart",
                             NormalizedName = "STANDART"
                         });
@@ -348,7 +342,7 @@ namespace _31._01.Migrations
                             Id = 1,
                             ClaimType = "IsAdmin",
                             ClaimValue = "true",
-                            UserId = "62e5c4fa-bb4e-49b4-ab2c-6c6bd3b0fa35"
+                            UserId = "5d696afe-55ef-4607-b990-ec3e5bb6715f"
                         });
                 });
 
@@ -393,13 +387,13 @@ namespace _31._01.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "62e5c4fa-bb4e-49b4-ab2c-6c6bd3b0fa35",
-                            RoleId = "6c14c20f-af7d-4364-8638-583e16b5c2ed"
+                            UserId = "5d696afe-55ef-4607-b990-ec3e5bb6715f",
+                            RoleId = "e1324a08-af1c-4928-b7ca-c6ff6e30d5ec"
                         },
                         new
                         {
-                            UserId = "bb1f20f3-8f8e-4487-a965-1d5f575cdfd8",
-                            RoleId = "5daeb6a2-fdf3-492a-8b54-7a3ea765e753"
+                            UserId = "543ec2c1-6d89-46b8-ad02-5480ed0f8841",
+                            RoleId = "c767cb64-23fa-40db-860e-2ff1ef15cb44"
                         });
                 });
 

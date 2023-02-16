@@ -24,53 +24,54 @@
                 @if (Model.Photo != null)
                 {
                     <td><img src="/image/@Model.Photo" alt="photo" class="card-img-thumbnail" /></td>
-                    <input asp-for="@Model.Photo" hidden />
                 }
                 else
                 {
                     <td><img src="/image/default2.png" alt="default" class="card-img-top" /></td>
-                    <input asp-for="@Model.Photo" hidden />
                 }
                 <div class="card-body">
                     <h5 class="card-title">@Model.FirstName @Model.LastName</h5>
-                    <input asp-for="@Model.FirstName" hidden />
-                    <input asp-for="@Model.LastName" hidden />
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">@Model.Email</li>
-                    @if(Model.İnformation!=null){
-                        <li class="list-group-item">
-                            <form asp-action="AddInformation">
+                    @if (SignInManager.UserManager.GetUserId(User) == Model.Id){
+                        @if(Model.İnformation!=null){
+                            <li class="list-group-item">
+                                <form asp-action="AddInformation">
+                                    <input asp-for="Id" hidden />
+                                    <br />
+                                    <div class="form-group">
+                                        <label asp-for="İnformation" class="control-label"></label>
+                                        <textarea asp-for="İnformation" class="form-control" aria-label="With textarea"></textarea>
+                                    </div>
+                                    <br />
+                                    <div class="form-group text-center">
+                                        <input type="submit" value="Change Information" class="btn btn-info" />
+                                    </div>
+
+                                </form>
+                            </li>
+                        }else{
+                            <li class="list-group-item">
+                                <form asp-action="AddInformation">
                                 <input asp-for="Id" hidden />
                                 <br />
                                 <div class="form-group">
-                                    <label asp-for="İnformation" class="control-label"></label>
-                                    <textarea asp-for="İnformation" class="form-control" aria-label="With textarea"></textarea>
+                                        <label asp-for="İnformation" class="control-label"></label>
+                                        <textarea asp-for="İnformation" class="form-control" aria-label="With textarea"></textarea>
                                 </div>
                                 <br />
                                 <div class="form-group text-center">
-                                    <input type="submit" value="Change Information" class="btn btn-info" />
+                                        <input type="submit" value="Add Information" class="btn btn-info" />
                                 </div>
-
-                            </form>
-                        </li>
-                    }else{
-                        <li class="list-group-item">
-                            <form asp-action="AddInformation">
-                            <input asp-for="Id" hidden />
-                            <br />
-                            <div class="form-group">
-                                    <label asp-for="İnformation" class="control-label"></label>
-                                    <textarea asp-for="İnformation" class="form-control" aria-label="With textarea"></textarea>
-                            </div>
-                            <br />
-                            <div class="form-group text-center">
-                                    <input type="submit" value="Add Information" class="btn btn-info" />
-                            </div>
             
-                            </form>
-                        </li>
+                                </form>
+                            </li>
+                        }
+                    }else{
+                        <li class="list-group-item">@Model.İnformation</li>
                     }
+                    
                     
                 
                 @if (SignInManager.UserManager.GetUserId(User)==Model.Id){
