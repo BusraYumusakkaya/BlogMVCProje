@@ -1,7 +1,9 @@
-﻿using _31._01.Areas.Identity.Entities.Concrete;
+﻿using _31._01.Areas.Identity.Data;
+using _31._01.Areas.Identity.Entities.Concrete;
 using _31._01.Models;
 using _31._01.Repositories.Abstract;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace _31._01.Controllers
 {
@@ -18,8 +20,9 @@ namespace _31._01.Controllers
             this.categoryRepository = categoryRepository;
             this.applicationUserRepository = applicationUserRepository;
         }
-        public IActionResult Index(string id)
+        public IActionResult Index()
         {
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = applicationUserRepository.GetByIdIncludeCategory(id);
 
             var category = categoryRepository.GetAll();
