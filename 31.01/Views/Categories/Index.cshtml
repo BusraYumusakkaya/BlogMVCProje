@@ -9,6 +9,9 @@
     <div>
         <h1 class="display-6 text-light bg-secondary text-center">CATEGORİES</h1>
     </div>
+    <div>
+        <h3>Select The Category You Want To Follow</h3>
+    </div>
     <form asp-action="AddCategories" asp-controller="Categories" asp-route-id="@Model.UserId" method="post" name="id">
     @foreach (var item in Model.Categories)
     {
@@ -17,9 +20,6 @@
                     <input class="form-check-input" name="ids" type="checkbox" value="@item.Id" checked />
                     <div class="card">
                         <h5 class="card-header">@Html.DisplayFor(modelItem => item.CategoryType)</h5>
-                        <div class="card-body">
-                            <p class="card-text">@Html.DisplayFor(modelItem => item.About)</p>
-                        </div>
                     </div>
                 </div>
         }else{
@@ -27,9 +27,6 @@
                 <input class="form-check-input" name="ids" type="checkbox" value="@item.Id" />
                 <div class="card">
                     <h5 class="card-header">@Html.DisplayFor(modelItem => item.CategoryType)</h5>
-                    <div class="card-body">
-                        <p class="card-text">@Html.DisplayFor(modelItem => item.About)</p>
-                    </div>
                 </div>
             </div>
             
