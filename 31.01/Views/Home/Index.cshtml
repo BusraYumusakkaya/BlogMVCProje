@@ -57,7 +57,7 @@
                 <p class="card-text">@item.Content</p>
                 }
                 
-                <a href="#" class="btn btn-outline-warning">Read</a>
+                <a asp-action="Read" asp-route-id="@item.Id" class="btn btn-outline-warning">Read</a>
         </div>
         
         <div class="card-footer text-muted">

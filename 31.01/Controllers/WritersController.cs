@@ -162,5 +162,6 @@ namespace _31._01.Controllers
             writerRepository.Update(user);
             return RedirectToAction(nameof(Index));
         }
+       
     }
 }
