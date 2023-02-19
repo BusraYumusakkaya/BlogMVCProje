@@ -1,0 +1,40 @@
+﻿@model ChooseCategoryVM
+@{
+	ViewData["Title"]="Writer";
+}
+<form asp-action="ChooseCategory" asp-route-ıd="@Model.ArticleId">
+    @*<input name="id" value="@Model.SchoolId" hidden />*@
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Please Select The Category You Want To Add</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Categories)
+            {
+                <tr>
+                    <td>
+                        @if (@Model.ArticlesCategory.Contains(item))
+                        {
+                            <div class="form-check">
+                                <input class="form-check-input" name="ids" type="checkbox" value="@item.Id" checked />
+                                @Html.DisplayFor(modelItem => item.CategoryType)
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="form-check">
+                                <input class="form-check-input" name="ids" type="checkbox" value="@item.Id" />
+                                @Html.DisplayFor(modelItem => item.CategoryType)
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <input type="submit" name="submit" value="Choose Category" class="btn btn-primary" />
+</form>

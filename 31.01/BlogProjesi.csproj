@@ -21,4 +21,15 @@
     <PackageReference Include="SendgridEmailHelper" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Categories\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\ourStory\" />
+  </ItemGroup>
+
 </Project>

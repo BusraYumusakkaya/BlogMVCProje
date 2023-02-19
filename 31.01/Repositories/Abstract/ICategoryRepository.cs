@@ -4,5 +4,7 @@ namespace _31._01.Repositories.Abstract
 {
 	public interface ICategoryRepository : IRepository<Category>
     {
-	}
+       Category GetByIdIncludeUser(int id);
+
+    }
 }

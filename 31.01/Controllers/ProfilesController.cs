@@ -9,45 +9,39 @@ using System.Security.Claims;
 
 namespace _31._01.Controllers
 {
-    public class WritersController : Controller
+    public class ProfilesController : Controller
     {
         private readonly IWriterRepository writerRepository;
         private readonly IArticleRepository articleRepository;
         private readonly ICategoryRepository categoryRepository;
         private readonly IApplicationUserRepository applicationUserRepository;
-        public WritersController(IWriterRepository writerRepository, IArticleRepository articleRepository,ICategoryRepository categoryRepository,IApplicationUserRepository applicationUserRepository)
+        public ProfilesController(IWriterRepository writerRepository, IArticleRepository articleRepository, ICategoryRepository categoryRepository, IApplicationUserRepository applicationUserRepository)
         {
             this.writerRepository = writerRepository;
-            this.articleRepository = articleRepository; 
+            this.articleRepository = articleRepository;
             this.categoryRepository = categoryRepository;
             this.applicationUserRepository = applicationUserRepository;
         }
         public IActionResult Index()
         {
-            var writers = writerRepository.GetAll();
-            WritersIndexVM writersIndexVM = new WritersIndexVM();
-            writersIndexVM.ApplicationUsers=writers;
-            return View(writersIndexVM);
-        }
-        public IActionResult Profile(string id)
-        {
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = writerRepository.GetByIdIncludeArticle(id);
-            WriterProfileVm writerProfileVM = new WriterProfileVm();
-            writerProfileVM.FirstName = user.FirstName;
-            writerProfileVM.LastName = user.LastName;
-            writerProfileVM.Id = user.Id;
-            writerProfileVM.Email= user.Email;
-            writerProfileVM.Articles =user.Articles;
+            ProfileVM profileVM = new ProfileVM();
+            profileVM.FirstName = user.FirstName;
+            profileVM.LastName = user.LastName;
+            profileVM.Id = user.Id;
+            profileVM.Email = user.Email;
+            profileVM.Articles = user.Articles;
             if (user.İnformation != null)
             {
-                writerProfileVM.İnformation = user.İnformation;
+                profileVM.İnformation = user.İnformation;
             }
             if (user.Photo != null)
             {
-                writerProfileVM.Photo = user.Photo;
+                profileVM.Photo = user.Photo;
             }
 
-            return View(writerProfileVM);
+            return View(profileVM);
         }
         public IActionResult AddArticle(string id)
         {
@@ -78,7 +72,7 @@ namespace _31._01.Controllers
         }
         public IActionResult ChooseCategory(int id)
         {
-            
+
             var article = articleRepository.GetByIdIncludeCategory(id);
 
             var category = categoryRepository.GetAll();
@@ -115,13 +109,13 @@ namespace _31._01.Controllers
             var user = applicationUserRepository.GetById(id);
             writerProfileVm.Id = user.Id;
             writerProfileVm.FirstName = user.FirstName;
-            writerProfileVm.LastName=user.LastName ;
-            writerProfileVm.Email=user.Email;
+            writerProfileVm.LastName = user.LastName;
+            writerProfileVm.Email = user.Email;
             if (user.Photo != null)
             {
-                writerProfileVm.Photo=user.Photo  ;
+                writerProfileVm.Photo = user.Photo;
             }
-           writerProfileVm.İnformation= user.İnformation  ;
+            writerProfileVm.İnformation = user.İnformation;
 
             return View(writerProfileVm);
         }

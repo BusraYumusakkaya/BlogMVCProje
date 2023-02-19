@@ -13,12 +13,15 @@ namespace _31._01.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IArticleRepository articleRepository;
         private readonly ICategoryRepository categoryRepository;
+        private readonly IWriterRepository writerRepository;
 
-        public HomeController(ILogger<HomeController> logger, IArticleRepository articleRepository,ICategoryRepository categoryRepository)
+
+        public HomeController(ILogger<HomeController> logger, IArticleRepository articleRepository,ICategoryRepository categoryRepository,IWriterRepository writerRepository)
         {
             _logger = logger;
             this.articleRepository = articleRepository;  
             this.categoryRepository = categoryRepository;
+            this.writerRepository = writerRepository;
         }
 
         public IActionResult Index()
@@ -49,6 +52,29 @@ namespace _31._01.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult Read(int id)
+        {
+            var article=articleRepository.GetById(id);
+            var user = writerRepository.GetById(article.ApplicationUserID);
+
+            article.Popular ++;
+            articleRepository.Update(article);
+
+            ArticlesIndexVM articlesIndexVM = new ArticlesIndexVM();
+            decimal sayi = article.Content.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries).Length / 2;
+
+            articlesIndexVM.AvgReadingTime = sayi;
+            articlesIndexVM.Content=article.Content;
+            articlesIndexVM.Title = article.Name;
+            articlesIndexVM.CreatedTime = article.CreatedDate;
+            articlesIndexVM.Image = user.Photo;
+            articlesIndexVM.Writer = user.FirstName + " " + user.LastName;
+            articlesIndexVM.ViewCount = article.Popular;
+            articlesIndexVM.UserId = user.Id;
+            articlesIndexVM.ArticleId = article.Id;
+            return View(articlesIndexVM);
+
         }
     }
 }

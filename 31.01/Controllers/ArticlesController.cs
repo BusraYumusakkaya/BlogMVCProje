@@ -1,5 +1,6 @@
 ﻿using _31._01.Models;
 using _31._01.Repositories.Abstract;
+using _31._01.Repositories.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _31._01.Controllers
@@ -9,10 +10,12 @@ namespace _31._01.Controllers
 
         public readonly IArticleRepository articleRepository;
         public readonly ICategoryRepository categoryRepository;
-        public ArticlesController(IArticleRepository articleRepository,ICategoryRepository categoryRepository)
+        public readonly IWriterRepository writerRepository;
+        public ArticlesController(IArticleRepository articleRepository,ICategoryRepository categoryRepository, IWriterRepository writerRepository)
         {
             this.articleRepository = articleRepository;
             this.categoryRepository = categoryRepository;
+            this.writerRepository = writerRepository;
         }
         public IActionResult Index()
         {
@@ -21,11 +24,29 @@ namespace _31._01.Controllers
             articlesIndexVM.Articles = articles;
             return View(articlesIndexVM);
         }
-        //public IActionResult FindTopic(string input)
-        //{
-        //    var search=
+        public IActionResult Read(int id)
+        {
+            var article = articleRepository.GetById(id);
+            var user = writerRepository.GetById(article.ApplicationUserID);
 
-        //}
-        
+            article.Popular++;
+            articleRepository.Update(article);
+
+            ArticlesIndexVM articlesIndexVM = new ArticlesIndexVM();
+            decimal sayi = article.Content.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries).Length / 2;
+
+            articlesIndexVM.AvgReadingTime = sayi;
+            articlesIndexVM.Content = article.Content;
+            articlesIndexVM.Title = article.Name;
+            articlesIndexVM.CreatedTime = article.CreatedDate;
+            articlesIndexVM.Image = user.Photo;
+            articlesIndexVM.Writer = user.FirstName + " " + user.LastName;
+            articlesIndexVM.ViewCount = article.Popular;
+            articlesIndexVM.UserId = user.Id;
+            articlesIndexVM.ArticleId = article.Id;
+            return View(articlesIndexVM);
+
+        }
+
     }
 }

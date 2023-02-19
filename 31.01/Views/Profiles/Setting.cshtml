@@ -1,0 +1,32 @@
+﻿@model SettingVM
+@{
+    ViewData["Title"] = "Profile";
+}
+<h3>Setting</h3>
+<hr />
+
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Setting">
+			<input asp-for="Id" hidden />
+			<div class="form-group">
+				<label asp-for="FirstName" class="control-label"></label>
+				<input asp-for="FirstName" class="form-control" />
+			</div>
+			<br />
+			<div class="form-group">
+				<label asp-for="LastName" class="control-label"></label>
+				<input asp-for="LastName" class="form-control" />
+			</div>
+			<br />
+			<div class="form-floating">
+				@*<label asp-for="Photo" class="control-label"></label>*@
+				<input asp-for="Photo" type="file" class="control-label" id="photo" />
+			</div>
+			<br />
+			<div class="form-group">
+				<input type="submit" value="Setting" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>

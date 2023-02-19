@@ -19,6 +19,7 @@ public class ApplicationUser : IdentityUser
     public string LastName { get; set; }
     public string? İnformation { get; set; }
     public string? Photo { get; set; }
+    public ICollection<Category> Categories { get; set; }
     public ICollection<Article>Articles { get; set; }
 }
 
