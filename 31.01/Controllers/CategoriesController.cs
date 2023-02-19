@@ -27,9 +27,13 @@ namespace _31._01.Controllers
 
             var category = categoryRepository.GetAll();
             CategoriesIndexVM categoriesIndexVM = new CategoriesIndexVM();
-            categoriesIndexVM.Categories = category;
-            categoriesIndexVM.UserId = id;
+            
             categoriesIndexVM.UsersCategories = user.Categories;
+            categoriesIndexVM.Categories = category;
+            
+            
+            categoriesIndexVM.UserId = id;
+            
 
 
             return View(categoriesIndexVM);
@@ -51,6 +55,36 @@ namespace _31._01.Controllers
             return RedirectToAction(nameof(Index));
 
 
+
+        }
+        public IActionResult GoToArticle(int Id)
+        {
+            var article = articleRepository.GetAllIncludeCategories(Id);
+            ArticlesIndexVM articlesIndexVM = new ArticlesIndexVM();
+            articlesIndexVM.Articles = article;
+            return View(articlesIndexVM);
+        }
+        public IActionResult Read(int id)
+        {
+            var article = articleRepository.GetById(id);
+            var user = writerRepository.GetById(article.ApplicationUserID);
+
+            article.Popular++;
+            articleRepository.Update(article);
+
+            ArticlesIndexVM articlesIndexVM = new ArticlesIndexVM();
+            decimal sayi = article.Content.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries).Length / 2;
+
+            articlesIndexVM.AvgReadingTime = sayi;
+            articlesIndexVM.Content = article.Content;
+            articlesIndexVM.Title = article.Name;
+            articlesIndexVM.CreatedTime = article.CreatedDate;
+            articlesIndexVM.Image = user.Photo;
+            articlesIndexVM.Writer = user.FirstName + " " + user.LastName;
+            articlesIndexVM.ViewCount = article.Popular;
+            articlesIndexVM.UserId = user.Id;
+            articlesIndexVM.ArticleId = article.Id;
+            return View(articlesIndexVM);
 
         }
     }

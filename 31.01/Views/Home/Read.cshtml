@@ -3,8 +3,8 @@
     ViewData["Title"] = "Home";
 }
 <div>
-    <h1 >@Model.Writer </h1>
-    <a @*href="@Url.Action("GoToProfile","Home")"*@ asp-route-id="@Model.UserId"><img src="/image/@Model.Image" alt="photo" class="card-img-thumbnail" height="70" width="70" /></a>
+    <a asp-controller="Writers" class="link-secondary" asp-action="Profile" asp-route-id="@Model.UserId"><h3>@Model.Writer </h3></a>
+    <a asp-controller="Writers" asp-action="Profile" asp-route-id="@Model.UserId"><img src="/image/@Model.Image" alt="photo" class="card-img-thumbnail" height="100" width="100" /></a>
     <h1>@Model.Title</h1>
     <p>@Model.Content</p>
     <br />

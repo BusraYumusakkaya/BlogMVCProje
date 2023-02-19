@@ -33,7 +33,25 @@
         }
         
     }
-        <input type="submit" name="submit" value="Follow" class="btn btn-outline-primary" />
+        <div class="d-flex p-2 bd-highlight">
+            <input type="submit" name="submit" value="Follow" class="btn btn-secondary " />
+        </div>
+        <br />
     </form>
+    <br />
+    <form >
+        @foreach (var item in Model.UsersCategories)
+        {
 
+            <div class="card w-75">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.CategoryType)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.About)</p>
+                    <a asp-action="GoToArticle" asp-route-id="@item.Id" class=" btn btn-info">Go To Article </a>
+                 </div>
+            </div>
+        <br />
+        <br />
+        }
+    </form>
 </body>

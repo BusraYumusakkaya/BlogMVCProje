@@ -8,5 +8,6 @@ namespace _31._01.Repositories.Abstract
         Article GetByIdIncludeCategory(int id);
         IEnumerable<Article> GetAllIncludeUsers();
         IEnumerable<Article> GetAllIncludeCategories();
+        IEnumerable<Article> GetAllIncludeCategories(int Id);
     }
 }
