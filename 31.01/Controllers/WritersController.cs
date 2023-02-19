@@ -171,7 +171,7 @@ namespace _31._01.Controllers
             articleRepository.Update(article);
 
             ArticlesIndexVM articlesIndexVM = new ArticlesIndexVM();
-            decimal sayi = article.Content.Length / 200;
+            decimal sayi = article.Content.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries).Length / 2;
 
             articlesIndexVM.AvgReadingTime = sayi;
             articlesIndexVM.Content = article.Content;

@@ -30,6 +30,8 @@ namespace _31._01.Controllers
             categoriesIndexVM.Categories = category;
             categoriesIndexVM.UserId = id;
             categoriesIndexVM.UsersCategories = user.Categories;
+
+
             return View(categoriesIndexVM);
         }
         [HttpPost]

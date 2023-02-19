@@ -4,13 +4,13 @@
 }
 <div>
     <h1 >@Model.Writer </h1>
-    <a @*href="@Url.Action("GoToProfile","Home")"*@ asp-route-id="@Model.UserId"><img src="/image/@Model.Image" alt="photo" class="card-img-thumbnail" height="50" width="50"  /></a>
+    <a @*href="@Url.Action("GoToProfile","Home")"*@ asp-route-id="@Model.UserId"><img src="/image/@Model.Image" alt="photo" class="card-img-thumbnail" height="70" width="70" /></a>
     <h1>@Model.Title</h1>
     <p>@Model.Content</p>
     <br />
     <br />
     <p>@Model.CreatedTime.ToString("yyyy-MM-dd") before added </p>
-    <p>@Model.AvgReadingTime sn </p>
+    <p>@Model.AvgReadingTime minute reading time </p>
     <p>
         @Model.ViewCount
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
