@@ -156,5 +156,28 @@ namespace _31._01.Controllers
             writerRepository.Update(user);
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult Read(int id)
+        {
+            var article = articleRepository.GetById(id);
+            var user = writerRepository.GetById(article.ApplicationUserID);
+
+            article.Popular++;
+            articleRepository.Update(article);
+
+            ArticlesIndexVM articlesIndexVM = new ArticlesIndexVM();
+            decimal sayi = article.Content.Length / 200;
+
+            articlesIndexVM.AvgReadingTime = sayi;
+            articlesIndexVM.Content = article.Content;
+            articlesIndexVM.Title = article.Name;
+            articlesIndexVM.CreatedTime = article.CreatedDate;
+            articlesIndexVM.Image = user.Photo;
+            articlesIndexVM.Writer = user.FirstName + " " + user.LastName;
+            articlesIndexVM.ViewCount = article.Popular;
+            articlesIndexVM.UserId = user.Id;
+            articlesIndexVM.ArticleId = article.Id;
+            return View(articlesIndexVM);
+
+        }
     }
 }

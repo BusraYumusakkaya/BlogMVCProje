@@ -120,7 +120,7 @@
                     }
                         <p class="card-text"><small class="text-muted">@item.CreatedDate.ToString("yyyy-MM-dd") before added </small></p>
                     <div class="d-flex mb-3">
-                    <a href="#" class="text-righ btn btn-outline-info me-auto p-2">Read</a>
+                            <a asp-action="Read" asp-route-id="@item.Id" class="btn btn-outline-warning">Read</a>
                     @if (SignInManager.UserManager.GetUserId(User) == Model.Id)
                     {
                         <a asp-action="ChooseCategory" asp-route-id="@item.Id" class="btn btn-outline-primary p-2">
